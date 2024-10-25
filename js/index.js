@@ -6,15 +6,21 @@ let range = '!A1:D10';
 
 const hojas = ["Comunidades", "Otras (Medios, etc.)", "Dropdowns", "Sobre esta iniciativa"];
 
-const url = `https://opensheet.elk.sh/${spreadsheetId}/${hojas[0]}`;
+const conection = (hoja,action)=>{
+const url = `https://opensheet.elk.sh/${spreadsheetId}/${hoja}`;
 fetch(url)
   .then(response => response.json())
-  .then(data => {
-
- const datosMapedDto = data.map(m =>  dtoComunidades(m) );
-  console.log('Datos obtenidos:', datosMapedDto);
-  })
+  .then(data => action(data))
   .catch(error => {
     console.error('Error al obtener los datos:', error);
   });
 
+}
+
+const fonctionComunidades = (data)=>{
+  
+ const datosMapedDto = data.map(m =>  dtoComunidades(m) );
+ console.log('Datos obtenidos:', datosMapedDto);
+}
+//test
+conection(hojas[0],fonctionComunidades)
