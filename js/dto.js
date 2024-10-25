@@ -1,4 +1,9 @@
 
+/**
+ * 
+ * @param {*} param0 : parametros necesarios para sacar los datos.
+ * @returns : objeto mapeado.
+ */
 export const dtoComunidades = ({Comunidad='',Estado='',Info_de_contacto='',Miniatura='',Temas='',Tipo_de_comunidad = '',
      Tipo_de_eventos='', URL_Comunidad='', Ubicación_habitual='', Última_revisión=''})=>{
     return {
@@ -16,4 +21,12 @@ export const dtoComunidades = ({Comunidad='',Estado='',Info_de_contacto='',Minia
   }
 
 
+  /**
+   * 
+   * @param {*} data : datos a ser tratados.
+   */
+  export const fonctionComunidades = (data)=>{
+    const datosMapedDto = data.map(m =>  dtoComunidades(m) );
+    console.log('Datos obtenidos:', datosMapedDto);
+   }
 
